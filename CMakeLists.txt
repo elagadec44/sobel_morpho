@@ -326,3 +326,10 @@ file(
 
 add_executable( sobel ${source_files} ${header_files})
 target_link_libraries(sobel ${SDL2_LIBRARY} ${SDL2TTF_LIBRARY} ${CMAKE_THREAD_LIBS_INIT} ${CMAKE_EXTRA_LIB})
+
+enable_testing()
+
+add_executable(test_sobel tests/test_sobel.c src/sobel.c)
+target_link_libraries(test_sobel m)
+
+add_test(NAME sobel_test COMMAND test_sobel)
