@@ -32,3 +32,23 @@ jobs:
 
       - name: Build
         run: cmake --build build --config Release
+  test:
+      runs-on: ubuntu-latest
+  
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+  
+        - name: Install dependencies
+          run: |
+            sudo apt-get update
+            sudo apt-get install -y build-essential
+  
+        - name: Configure
+          run: cmake -S . -B build -DNO_DOWNLOAD=ON
+  
+        - name: Build tests
+          run: cmake --build build
+  
+        - name: Run tests
+          run: ctest --test-dir build --output-on-failure
