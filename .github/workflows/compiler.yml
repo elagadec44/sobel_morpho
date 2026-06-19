@@ -11,6 +11,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libsdl2-dev
+          sudo apt-get install -y libsdl2-ttf-dev
+        
+      
+      - name: Configure project
+        run: cmake -S . -B build -DNO_DOWNLOAD=ON
+      
       - name: Build project
-        run: ./CMakeGCC.sh
+        run: cmake --build build
         
