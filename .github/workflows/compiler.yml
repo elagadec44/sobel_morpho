@@ -13,5 +13,6 @@ jobs:
 
       - name: Compile project
         run: |
+          ls
           make
         
